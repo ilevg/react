@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(205, 205, 205);
+
+}
+.App{
+    width: 800px;
+    margin: 10px;
+}
+#root{
+    display: flex;
+    justify-content: center;
+}
+.post{
+    display: flex;
+    padding: 15px;
+    border: 2px solid black;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
