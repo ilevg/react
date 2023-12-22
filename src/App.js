@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
-import ClassCounter from './components/ClassCounter';
-import Counter from './components/Counter'
-import PostList from './components/PostList'
-
-
-
+import React, { useEffect, useState } from 'react'
 import './styles/App.css'
-import PostForm from './components/PostForm';
+import { BrowserRouter } from 'react-router-dom'
+import Navbar from './UI/navbar/Navbar'
+import AppRouter from './components/AppRouter'
+import { AuthContext } from './context'
 
 function App() { 
-    const [posts, setPosts] = useState([
-        {id: 1, title: 'JavaScript', description: 'Program lang'},
-        {id: 2, title: 'JavaScript 2', description: 'Program lang'},
-        {id: 3, title: 'JavaScript 3', description: 'Program lang'},
-    ])
+    const [isAuth, setIsAuth] = useState(false)
 
-    const createPost = (newPost) => {
-        setPosts([...posts, newPost])
-    }
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            setIsAuth(true)
+        }
+    }, [])
+
     return (
-        <div className="App">
-            <ClassCounter/>
-            <Counter/>
-            <PostList posts={posts} title='Posts about languages'/>
-            <PostForm create={createPost} />
-        </div>
-    );
+        <AuthContext.Provider value={{
+            isAuth,
+            setIsAuth: setIsAuth
+        }}>
+            <BrowserRouter>
+                <Navbar />
+                <AppRouter/>
+            </BrowserRouter>
+        </AuthContext.Provider>
+        
+    )
 }
-
-export default App;
+export default App

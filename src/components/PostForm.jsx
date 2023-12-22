@@ -15,7 +15,6 @@ const PostForm = function({create}) {
     }
     return (
         <form>
-            <p style={{textAlign: 'center'}}>Add post:</p>
             {/* Controlled Component */}
             <MyInput
                 value={post.title}
